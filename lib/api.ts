@@ -8,7 +8,6 @@ import { ApiResponse } from '@/constants';
 export async function fetchApi<T>(url: string, options?: Options): Promise<T> {
   try {
     // 使用 ky.get() 发送 GET 请求，并自动解析 JSON
-    console.log('process.env.NEXT_PUBLIC_API_URL', process.env.NEXT_PUBLIC_API_URL);
     const response = await get(url, {
       prefixUrl: process.env.NEXT_PUBLIC_API_URL,
       headers: {

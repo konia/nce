@@ -54,7 +54,7 @@ export default async function BookPage({ params }: { params: Promise<{ bookId: s
               {bookData.map((book) => {
                 const [lesson, title] = book.filename.split('－');
                 return (
-                  <Link key={book.title} href={`/book/${bookId}/lesson/${book.filename}`}>
+                  <Link key={book.title} href={`/${bookId}/${book.filename}`}>
                     <Card className="gap-y-1 rounded-xs border border-amber-100 bg-linear-0 from-amber-100 to-amber-400 p-0.5 shadow-none transition-all duration-300 ease-in-out hover:-translate-y-1 hover:cursor-pointer hover:border-amber-400 hover:shadow-md">
                       <CardContent className="rounded-xxs flex h-14 items-center justify-center gap-x-4 border border-amber-400/50 bg-white/95 px-2 text-center text-sm font-semibold wrap-anywhere break-keep text-gray-700">
                         {title}

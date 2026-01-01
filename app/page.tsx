@@ -95,7 +95,7 @@ export default function Home() {
             <Card
               key={course.id}
               className="group flex-1 rounded-sm border-0 p-0 transition-all duration-300 ease-in-out hover:-translate-y-4 hover:cursor-pointer hover:shadow-xl"
-              onClick={() => router.push(`/book/${course.id}`)}
+              onClick={() => router.push(`/${course.id}`)}
             >
               <CardContent className="p-0">
                 <section

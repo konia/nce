@@ -4,6 +4,11 @@ export type ApiResponse = {
   message: string;
 };
 
+export type LessonApiParams = {
+  bookId: string;
+  lessonId: string;
+};
+
 export type BookCatalog = {
   title: string;
   filename: string;
