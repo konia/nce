@@ -2,14 +2,15 @@
 
 import get, { HTTPError, Options } from 'ky';
 
-import { ApiResponse } from '@/types';
+import { ApiResponse } from '@/constants';
 
 // 示例：一个通用的 GET 请求助手函数，使用 ky
 export async function fetchApi<T>(url: string, options?: Options): Promise<T> {
   try {
     // 使用 ky.get() 发送 GET 请求，并自动解析 JSON
+    console.log('process.env.NEXT_PUBLIC_API_URL', process.env.NEXT_PUBLIC_API_URL);
     const response = await get(url, {
-      // prefixUrl: 'https://api.example.com',
+      prefixUrl: process.env.NEXT_PUBLIC_API_URL,
       headers: {
         'Content-Type': 'application/json'
         // 可以添加认证：'Authorization': `Bearer ${token}`,
