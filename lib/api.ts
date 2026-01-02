@@ -1,10 +1,5 @@
-// lib/api.ts
-
 import get, { HTTPError, Options } from 'ky';
 
-import { ApiResponse } from '@/constants';
-
-// 示例：一个通用的 GET 请求助手函数，使用 ky
 export async function fetchApi<T>(url: string, options?: Options): Promise<T> {
   try {
     // 使用 ky.get() 发送 GET 请求，并自动解析 JSON
@@ -29,10 +24,4 @@ export async function fetchApi<T>(url: string, options?: Options): Promise<T> {
     }
     throw error; // 重新抛出以便调用方处理
   }
-}
-
-// 示例：特定 API 调用函数
-export async function getUserData(userId: string): Promise<ApiResponse> {
-  const url = `https://api.example.com/users/${userId}`;
-  return fetchApi<ApiResponse>(url);
 }

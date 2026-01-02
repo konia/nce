@@ -1,22 +1,22 @@
 'use client';
 
 import { FileDownIcon, MailIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { Separator } from '@/components/ui/separator';
 
 import { Button } from '../ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
-// import { ThemeToggle } from '@/components/layout/theme-toggle';
-// import { Separator } from '@/components/ui/separator';
-
-// import { Button } from '../ui/button';
-
 export const Header = () => {
+  const router = useRouter();
   return (
     <header className="sticky top-0 z-50 w-full bg-white/30 backdrop-blur-xs">
       <section className="container mx-auto flex h-14 items-center">
-        <section className="flex items-center gap-x-2 text-base font-bold uppercase">
+        <section
+          className="flex cursor-pointer items-center gap-x-2 text-base font-bold uppercase"
+          onClick={() => router.push('/')}
+        >
           <section className="flex h-6 w-6 rotate-45 items-center justify-center rounded-sm bg-black text-sm text-white">
             N
           </section>
