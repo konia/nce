@@ -2,6 +2,13 @@ import { Course } from './types';
 
 export * from './types';
 
+export const TIME_REG = /\[(\d{2}):(\d{2})\.(\d{2,3})\]/;
+
+export const INFO_REG = {
+  album: /\[al:(.*)\]/,
+  artist: /\[ar:(.*)\]/,
+  title: /\[ti:(.*)\]/
+};
 export const courses: Course[] = [
   {
     id: 'nce-1',

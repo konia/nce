@@ -1,5 +1,5 @@
-export type ApiResponse = {
-  data: string;
+export type ApiResponse<T> = {
+  data: T;
   status: string;
   message: string;
 };
@@ -12,6 +12,20 @@ export type LessonApiParams = {
 export type BookCatalog = {
   title: string;
   filename: string;
+};
+
+export type Lesson = {
+  album: string;
+  artist: string;
+  title: string;
+  data: AudioSegment[];
+};
+
+export type AudioSegment = {
+  startTime: number;
+  endTime: number;
+  en: string;
+  cn: string;
 };
 
 export type Course = {

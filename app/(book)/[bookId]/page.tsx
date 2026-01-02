@@ -5,12 +5,12 @@ import BackButton from '@/components/layout/back-button';
 import MoveButton from '@/components/layout/move-button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { type BookCatalog, type Course, courses } from '@/constants';
+import { ApiResponse, type BookCatalog, type Course, courses } from '@/constants';
 import { fetchApi } from '@/lib/api';
 
 export default async function BookPage({ params }: { params: Promise<{ bookId: string }> }) {
   const { bookId } = await params;
-  const bookData: BookCatalog[] = await fetchApi(`api/book/${bookId}`);
+  const { data: bookData }: ApiResponse<BookCatalog[]> = await fetchApi(`api/book/${bookId}`);
 
   const cover: Course = courses.filter((course) => course.id == bookId)[0];
   const currentIndex = Number(bookId.slice(-1));

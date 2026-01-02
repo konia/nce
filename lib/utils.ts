@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+import { INFO_REG, TIME_REG } from '@/constants';
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -31,4 +33,60 @@ export function convertToRomanBasic(num: number) {
   }
 
   return romanMap[num];
+}
+
+export const formatTime = (time: number) => {
+  if (!time || isNaN(time)) return '00:00';
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+};
+
+export const parseTime = (tag: string[]) => {
+  // 计算秒数: 分 * 60 + 秒 + 毫秒
+  const [, minutes, seconds, milliseconds] = tag;
+  // 这里的毫秒通常是两位数（10ms单位）或三位数
+  // 如果是两位数 (e.g. .61) 代表 610ms => 0.61s
+  return Number(minutes) * 60 + Number(seconds) + Number(milliseconds) / (milliseconds.length === 2 ? 100 : 1000);
+};
+
+export function parseLrc(lrcString: string) {
+  let endTime = 0;
+  let startTime = 0;
+  const lines = lrcString.split(/\r?\n/).filter(Boolean);
+  const result: { startTime: number; endTime: number; en: string; cn: string }[] = [];
+  const info = {
+    album: '',
+    artist: '',
+    title: ''
+  };
+
+  lines.forEach((line, i) => {
+    const match = TIME_REG.exec(line);
+
+    if (!match) {
+      for (const key in INFO_REG) {
+        const m = line.match(INFO_REG[key as keyof typeof INFO_REG]);
+        if (m) info[key as keyof typeof INFO_REG] = m[1];
+      }
+      return;
+    } else {
+      startTime = parseTime(match);
+      const [en, cn] = line.replace(TIME_REG, '').trim().split('|');
+      console.log('🚀 ~ parseLrc ~ lines.length:', lines.length);
+
+      for (let j = i + 1; j < lines.length; j++) {
+        const nextMatch = TIME_REG.exec(lines[j]);
+        console.log('🚀 ~ parseLrc ~ nextMatch:', j);
+        if (nextMatch) {
+          endTime = Number((parseTime(nextMatch) - 0.5).toFixed(2));
+          break;
+        }
+      }
+
+      if (en || cn) result.push({ startTime, endTime, en: en || '', cn: cn || '' });
+    }
+  });
+
+  return { ...info, data: result };
 }

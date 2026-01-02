@@ -10,7 +10,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     const id = bookId.slice(-1);
     const data = JSON.parse(fileContents)[id];
 
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json({ data, message: 'Book fetched successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error reading JSON:', error);
     return NextResponse.json({ error: 'Failed to read JSON' }, { status: 500 });
