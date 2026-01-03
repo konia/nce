@@ -30,6 +30,7 @@ export default async function BookPage({ params }: { params: Promise<{ bookId: s
             height={1280}
             className="opacity-10 mix-blend-multiply"
             alt={cover.background}
+            loading="eager"
           />
           <Image
             src={cover.background}
@@ -37,6 +38,7 @@ export default async function BookPage({ params }: { params: Promise<{ bookId: s
             height={1280}
             className="opacity-10 mix-blend-multiply"
             alt={cover.background}
+            loading="eager"
           />
           <section className="absolute top-10 -left-30 aspect-square w-7xl">
             <Image src={cover.image} width={1280} height={1280} className="" alt={cover.title} loading="eager" />

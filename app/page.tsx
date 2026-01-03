@@ -107,7 +107,14 @@ export default function Home() {
                         className="rounded-xxs flex cursor-pointer gap-x-3 p-2 hover:bg-amber-50"
                         onClick={() => handlePdfDownload(book.file)}
                       >
-                        <Image src={book.image} width={40} height={40} alt={book.title} className="rounded-xxs" />
+                        <Image
+                          src={book.image}
+                          width={40}
+                          height={40}
+                          alt={book.title}
+                          className="rounded-xxs"
+                          loading="eager"
+                        />
                         <div className="flex flex-col">
                           <span className="text-sm font-medium text-gray-600">
                             <b className="text-gray-700">Book {index + 1}</b> - {book.title}

@@ -167,7 +167,14 @@ export default function LessonContent({
         <BackButton url={`/${bookId}/`} />
       </section>
       <section className="relative flex w-150 flex-col items-center justify-center overflow-hidden rounded-sm p-4">
-        <Image src="/images/read.jpg" width={320} height={320} className="w-80 rounded-full" alt={lessonData.title} />
+        <Image
+          src="/images/read.jpg"
+          width={320}
+          height={320}
+          className="w-80 rounded-full"
+          alt={lessonData.title}
+          loading="eager"
+        />
 
         <h3 className="my-6 flex items-center gap-x-2 text-xl font-semibold text-gray-700">{lessonData.title}</h3>
         {audioRef && (
