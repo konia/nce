@@ -18,6 +18,8 @@ export type Lesson = {
   album: string;
   artist: string;
   title: string;
+  pre: string | null;
+  next: string | null;
   data: AudioSegment[];
 };
 

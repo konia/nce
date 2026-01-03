@@ -43,16 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" style={{ colorScheme: 'light' }}>
       <body className={`${capriola.variable} antialiased`} suppressHydrationWarning>
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          enableColorScheme={true} // 🔥 增强主题加载，减少水合冲突
-          storageKey="next-theme"
-        > */}
         <Header></Header>
         <Container>{children}</Container>
-        <Toaster position="top-right" />
+        <Toaster position="top-right" richColors />
         {/* </ThemeProvider> */}
       </body>
     </html>

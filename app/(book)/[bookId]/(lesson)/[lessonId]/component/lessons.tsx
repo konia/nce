@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { PauseIcon, PlayIcon, RefreshCwIcon, RepeatIcon, SkipBackIcon, SkipForwardIcon } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
+import BackButton from '@/components/layout/back-button';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Slider } from '@/components/ui/slider';
@@ -21,6 +23,7 @@ export default function LessonContent({
   lessonId: string;
   lessonData: Lesson;
 }) {
+  const router = useRouter();
   const audioRef = useRef<HTMLAudioElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -159,7 +162,10 @@ export default function LessonContent({
   }, [bookId, lessonId]);
 
   return (
-    <section className="mb-[10vh] flex h-[50vh] overflow-hidden rounded-2xl bg-white">
+    <section className="relative mt-[10vh] flex h-[70vh] overflow-hidden rounded-2xl bg-white">
+      <section className="absolute top-5 left-5 z-1">
+        <BackButton url={`/${bookId}/`} />
+      </section>
       <section className="relative flex w-150 flex-col items-center justify-center overflow-hidden rounded-sm p-4">
         <Image src="/images/read.jpg" width={320} height={320} className="w-80 rounded-full" alt={lessonData.title} />
 
@@ -205,7 +211,12 @@ export default function LessonContent({
           </Tooltip>
 
           <section className="flex items-center gap-x-2">
-            <Button size="icon-sm" variant="outline">
+            <Button
+              size="icon-sm"
+              variant="outline"
+              disabled={lessonData.pre === null}
+              onClick={() => router.push(`/${bookId}/${lessonData.pre}`)}
+            >
               <SkipBackIcon />
             </Button>
 
@@ -227,7 +238,12 @@ export default function LessonContent({
                 <PauseIcon className="size-5" />
               </span>
             </Button>
-            <Button size="icon-sm" variant="outline">
+            <Button
+              size="icon-sm"
+              variant="outline"
+              disabled={lessonData.next === null}
+              onClick={() => router.push(`/${bookId}/${lessonData.next}`)}
+            >
               <SkipForwardIcon />
             </Button>
           </section>
@@ -253,14 +269,14 @@ export default function LessonContent({
               lyrics.map((line, index) => (
                 <div
                   key={index}
-                  className={`cursor-pointer p-4 transition-all duration-300 hover:opacity-80 ${
+                  className={`cursor-pointer p-4 transition-all duration-300 ease-in-out hover:opacity-80 ${
                     index === activeIndex
                       ? 'text-gray-900 opacity-100 hover:opacity-100' // 高亮样式
                       : 'text-gray-600 opacity-40' // 普通样式
                   } `}
                   onClick={() => handleLineClick(index)}
                 >
-                  <div className="text-xl">{line.en}</div>
+                  <div className="text-lg">{line.en}</div>
                   <div className="mt-1 text-sm text-gray-500"> {line.cn}</div>
                 </div>
               ))}

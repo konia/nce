@@ -33,14 +33,21 @@ export default function Home() {
 
     if (hasVisited) {
       setTimeout(() => {
-        toast.info('Welcome Back!', {
+        toast.info(() => <span className="font-semibold">Welcome Back!</span>, {
           id: 'welcome-toast',
-          description: `You last studied Lesson ${decodeURIComponent(JSON.parse(hasVisited).lessonId).split('－')[0]} of Book ${JSON.parse(hasVisited).bookId.slice(-1)}. Do you want to continue?`,
-          className: 'rounded-xxs!',
+          description: `The recent studies was L${decodeURIComponent(JSON.parse(hasVisited).lessonId).split('－')[0]} of Book
+              ${JSON.parse(hasVisited).bookId.slice(-1)}. Do you want to continue?`,
+
+          className: 'rounded-xxs! py-3!',
+          classNames: {
+            description: 'text-xs! text-gray-600!',
+            actionButton: 'rounded-xs! bg-gray-900!',
+            closeButton: 'bg-white! text-gray-600!'
+          },
           duration: Infinity,
           closeButton: true,
           action: {
-            label: 'Continue !',
+            label: 'Continue',
             onClick: () => router.push(`/${JSON.parse(hasVisited).bookId}/${JSON.parse(hasVisited).lessonId}`)
           },
           onDismiss: () => {
@@ -53,17 +60,17 @@ export default function Home() {
 
   return (
     <>
-      <section className="mt-14 flex items-center justify-center gap-x-10">
-        <section className="relative">
+      <section className="mt-14 flex items-center justify-between">
+        <section className="relative z-1 max-w-1/2 flex-1">
           <Badge variant="secondary" className="border border-amber-200 bg-amber-100 text-xs text-amber-500">
             Base on the New Concept English
           </Badge>
           <div className="absolute -top-30 -z-1 h-90 w-90 rounded-full border border-dashed border-current text-amber-500 before:absolute before:top-1/2 before:left-1/2 before:h-60 before:w-60 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:border-dashed before:border-current after:absolute after:top-1/2 after:left-1/2 after:h-120 after:w-120 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:border after:border-dashed after:border-current"></div>
           <h1 className="mt-2 text-6xl font-semibold uppercase">
-            <span className="mb-2 font-bold text-amber-400"></span>
-            up your <span className="mb-2 font-bold text-amber-400"> skills </span> <br />
-            to <span className="mb-2 font-bold text-amber-400"> promote</span> your <br />
-            <span className="mb-2 font-bold text-amber-400">career</span> development
+            up your <span className="mb-2 font-bold text-amber-400"> skills</span>
+            <br />
+            to <span className="mb-2 font-bold text-amber-400"> promote </span>
+            your <span className="mb-2 font-bold text-amber-400"> career </span> development
           </h1>
           <div className="my-6 text-base text-gray-500">
             These courses can help you improve your skills and abilities to better handle your daily work.
@@ -129,7 +136,7 @@ export default function Home() {
             </Button>
           </section>
         </section>
-        <section className="flex flex-1 justify-center">
+        <section className="flex w-180 justify-center">
           <div className="relative w-135">
             <div className="absolute top-12 -left-5 z-1 flex items-center gap-x-3 rounded-lg border border-amber-400 bg-amber-100 px-3.5 py-3 shadow-lg">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500">
@@ -160,8 +167,9 @@ export default function Home() {
 
             <Image
               src={'/images/child.png'}
-              width={1239}
-              height={1567}
+              width={600}
+              height={759}
+              loading="eager"
               className="mask-b-from-black mask-b-from-75% mask-b-to-transparent mask-alpha"
               alt={'Here is a Child'}
             />
@@ -198,7 +206,7 @@ export default function Home() {
                     className="opacity-10 mix-blend-multiply"
                     alt={course.background}
                   />
-                  <section className="absolute top-2 -left-12 aspect-square w-160">
+                  <section className="absolute top-2 aspect-square w-160 xl:-left-1/4 2xl:-left-1/6">
                     <Image src={course.image} width={640} height={640} className="w-full" alt={course.title} />
                   </section>
                 </section>
@@ -207,7 +215,7 @@ export default function Home() {
                 </p>
                 <p className="mt-1 px-5 text-sm text-gray-500">{course.description}</p>
               </CardContent>
-              <CardFooter className="pb-6">
+              <CardFooter className="mt-auto pb-6">
                 <Button className="group-hover:bg-primary/90 group-hover:text-primary-foreground ease-in-out- relative w-full bg-gray-600 text-white transition-all duration-300 hover:cursor-pointer">
                   <span className="opacity-100 transition-all duration-300 ease-in-out group-hover:opacity-0">
                     Try to Learn This Lesson
