@@ -1,107 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 新概念英语（New Concept English）-全四册
 
-## Getting Started
+### 在线课文点读
 
-First, run the development server:
+在线课文朗读，单句点读，随时随地在线学习。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 第一册：《First Things First》
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**目标：打基础，日常交流入门**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **内容概述**：
+  - 共144课，都是非常短的小对话和故事。
+  - 涉及**字母、音标、基础词汇、简单句型**。
+  - 场景包括：问候、介绍、买东西、问路、看医生、日常生活。
 
-## Learn More
+- **语法重点**：
+  - 一般现在时、一般过去时、一般将来时的基本用法。
+  - be动词、名词单复数、冠词、简单疑问句、祈使句。
 
-To learn more about Next.js, take a look at the following resources:
+- **词汇量**：约600词左右。
+- **学习重点**：
+  - 正确发音、掌握基础语法、能听懂并说出日常用语。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **适合人群**：
+  - 英语零基础到初级学习者。
+  - 需要建立语感，能开口说简单英文。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 第二册：《Practice and Progress》
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**目标：初步运用，听说读写同步提高**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **内容概述**：
+  - 共96课，每课一个短故事，逐渐增加难度。
+  - 情节有趣，加入了旅行、工作、社会生活的情景。
 
-your-next-app/
-├── .env.local # 本地环境变量（不提交到Git，敏感配置存放）
-├── .env.production # 生产环境变量（可选，按需配置）
-├── .env.development # 开发环境变量（可选，按需配置）
-├── .gitignore # Git 忽略配置（node_modules、.next 等）
-├── next.config.js # Next.js 核心配置文件（路由、构建、静态资源等）
-├── package.json # 项目依赖、脚本配置
-├── tsconfig.json # TypeScript 配置（推荐使用TS，增强类型安全）
-├── postcss.config.js # PostCSS 配置（Tailwind CSS 等样式工具依赖）
-├── tailwind.config.js # Tailwind CSS 配置（主流样式方案，可选）
-├── public/ # 静态公共资源（无需编译，直接映射到根路径）
-│ ├── favicon.ico # 网站图标
-│ ├── logo.png # 项目Logo
-│ ├── images/ # 公共图片资源（如首页轮播图、默认头像等）
-│ └── robots.txt # 搜索引擎爬虫配置
-├── app/ # App Router 核心目录（Next.js 13+ 推荐，路由基于文件系统）
-│ ├── layout.tsx # 根布局组件（全局共享布局，如导航栏、页脚、全局样式）
-│ ├── page.tsx # 首页（根路由 / 对应的页面组件）
-│ ├── error.tsx # 全局错误捕获组件（页面出错时展示）
-│ ├── loading.tsx # 全局加载组件（异步数据加载时的骨架屏/加载动画）
-│ ├── not-found.tsx # 404 页面组件（路由不存在时展示）
-│ ├── dashboard/ # 业务模块目录（示例：仪表盘模块，对应 /dashboard 路由）
-│ │ ├── layout.tsx # 仪表盘模块局部布局（仅该模块下页面共享）
-│ │ ├── page.tsx # 仪表盘首页（/dashboard）
-│ │ ├── settings/ # 子模块目录（对应 /dashboard/settings 路由）
-│ │ │ └── page.tsx # 仪表盘设置页面
-│ │ └── [userId]/ # 动态路由目录（对应 /dashboard/123 等动态路径，[] 包裹动态参数）
-│ │ └── page.tsx # 动态路由页面（获取 userId 参数进行数据渲染）
-│ └── api/ # API 路由目录（App Router 下的 API，对应 /api 路径）
-│ │ └── route.ts # 示例 API 路由
-│ ├── user/ # 用户相关 API 模块
-│ │ └── route.ts # 用户 API 接口（支持 GET/POST/PUT/DELETE 等请求）
-│ └── product/ # 商品相关 API 模块
-│ └── route.ts # 商品 API 接口
-├── components/ # 全局公共组件（所有页面/模块共享）
-│ ├── ui/ # 基础UI组件（原子组件，可复用性极强）
-│ │ ├── Button.tsx # 按钮组件
-│ │ ├── Input.tsx # 输入框组件
-│ │ ├── Card.tsx # 卡片组件
-│ │ └── Modal.tsx # 弹窗组件
-│ ├── layout/ # 布局相关组件（非路由布局，如侧边栏、面包屑）
-│ │ ├── Navbar.tsx # 导航栏组件
-│ │ ├── Footer.tsx # 页脚组件
-│ │ └── Sidebar.tsx # 侧边栏组件
-│ └── features/ # 业务功能组件（按业务模块划分，复用性中等）
-│ ├── auth/ # 认证相关组件（登录表单、注册表单等）
-│ │ ├── LoginForm.tsx
-│ │ └── RegisterForm.tsx
-│ └── product/ # 商品相关组件（商品卡片、商品列表等）
-│ ├── ProductCard.tsx
-│ └── ProductList.tsx
-├── lib/ # 工具库/公共逻辑（非组件代码，全局复用）
-│ ├── utils.ts # 通用工具函数（格式化时间、校验表单等）
-│ ├── api.ts # API 请求封装（统一请求拦截、响应处理）
-│ ├── db.ts # 数据库连接配置（Prisma/MongoDB 等）
-│ └── hooks/ # 自定义 React Hooks（全局复用的状态/逻辑钩子）
-│ ├── useAuth.ts # 认证相关 Hook（获取用户信息、登录状态等）
-│ └── useCart.ts # 购物车相关 Hook（添加商品、计算总价等）
-├── models/ # 数据模型/类型定义（TypeScript 接口、数据库模型）
-│ ├── user.ts # 用户数据类型（IUser、UserCreateInput 等）
-│ ├── product.ts # 商品数据类型（IProduct 等）
-│ └── order.ts # 订单数据类型（IOrder 等）
-├── styles/ # 全局样式文件（可选，配合 Tailwind 或单独使用）
-│ ├── globals.css # 全局 CSS（重置样式、全局通用样式）
-│ └── components/ # 组件专属样式（可选，如 CSS Modules）
-├── middleware.ts # Next.js 中间件（全局路由守卫、请求拦截、重定向等）
-├── prisma/ # Prisma ORM 配置（可选，数据库方案）
-│ ├── schema.prisma # 数据库模型定义
-│ └── migrations/ # 数据库迁移文件
-└── .next/ # 构建输出目录（自动生成，无需手动修改，.gitignore 忽略）
+- **语法重点**：
+  - 各种时态（现在完成时、过去完成时、将来时、过去进行时）。
+  - 被动语态、直接引语和间接引语、条件句、比较级和最高级。
+
+- **词汇量**：约1500词左右。
+- **学习重点**：
+  - 掌握基本语法体系，能写简单短文，能听懂慢速英语。
+  - 口语表达更流畅，能描述事件、讲故事。
+
+- **适合人群**：
+  - 有一定英语基础，想系统梳理语法、提高读写能力的人。
+
+---
+
+## 第三册：《Developing Skills》
+
+**目标：语言运用能力进阶，理解真实语境**
+
+- **内容概述**：
+  - 共60课，每课一篇短文，题材更丰富（科技、历史、人物、故事）。
+  - 文章更长，句子更复杂，阅读量明显加大。
+
+- **语法重点**：
+  - 虚拟语气、各种复杂从句（定语从句、状语从句、名词性从句）。
+  - 非谓语动词（动词不定式、分词、动名词）的高级用法。
+
+- **词汇量**：约2500词左右。
+- **学习重点**：
+  - 阅读理解能力，扩大词汇量，掌握地道表达。
+  - 能复述文章、用英语讨论话题、写中等长度的文章。
+
+- **适合人群**：
+  - 已学完第二册，想提高综合能力、能读懂原版书或新闻的人。
+
+---
+
+## 第四册：《Fluency in English》
+
+**目标：流利表达，学术/专业阅读能力**
+
+- **内容概述**：
+  - 共48课，每课一篇较长的文章，题材涵盖哲学、科学、艺术、历史。
+  - 语言地道、表达严谨，接近大学英语阅读难度。
+
+- **语法重点**：
+  - 巩固所有语法，重点是复杂结构、修辞、长难句分析。
+
+- **词汇量**：约3500-4000词。
+- **学习重点**：
+  - 提高逻辑思维和批判性阅读能力。
+  - 能写较长文章、报告，口语表达接近流利。
+
+- **适合人群**：
+  - 已有较强英语基础，想进一步提升到高级水平的人。
+  - 考研、雅思、托福备考的学习者。
+
+---
+
+## 总体学习路径建议
+
+1. **第一册**：打好语音、语法和口语基础。
+2. **第二册**：建立完整语法体系，提升听说读写的基本能力。
+3. **第三册**：重点在阅读、词汇和句型复杂度，培养复述和写作能力。
+4. **第四册**：进入英语原著阅读和学术表达层面，达到准母语水平。
+
+---
+
+## 免责声明
+
+本网站的内容仅限个人学习、研究之用，非商业用途。
+
+内容源于互联网，我们不对内容的版权归属承担任何责任。
+
+如您认为本网站上的任何内容侵犯了您的著作权或其他合法权益，请通过以下联系方式通知我们： 联系邮箱：konia.ho@gmail.com，我们将在收到有效通知后尽快核实并采取相应措施（如删除相关内容）。
+
+为尊重和保护著作权人的合法权益，请您支持正版，购买合法授权的教材或资源，避免使用未经授权的内容。
+
+本声明适用于本网站的所有内容，感谢您的理解与配合。
+
+## 最后
+
+> 大量的学习，大量的研究  
+> 不断地重复，不断的实践  
+> 从而建立起自己稳定的内核  
+> 在克服逆境的过程中爱上自己

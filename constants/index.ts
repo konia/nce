@@ -49,3 +49,42 @@ export const courses: Course[] = [
     lessons: '48 lessons'
   }
 ];
+
+export const books = [
+  {
+    id: 'nce-1',
+    title: 'First Things First',
+    file: '/books/NCE1_First_Things_First.pdf',
+    image: '/images/book1.jpg',
+    tag: 'Beginner',
+    color: '#E6F9E6',
+    text: '#2E7D32'
+  },
+  {
+    id: 'nce-2',
+    title: 'Practice Progress',
+    file: '/books/NCE2_Practice&Progress.pdf',
+    image: '/images/book2.jpg',
+    tag: 'Elementary',
+    color: '#E6F3FF',
+    text: '#1976D2'
+  },
+  {
+    id: 'nce-3',
+    title: 'Developing Skills',
+    file: '/books/NCE3_Developing_Skills.pdf',
+    image: '/images/book3.jpg',
+    tag: 'Intermediate',
+    color: '#F5E6FF',
+    text: '#7B1FA2'
+  },
+  {
+    id: 'nce-4',
+    title: 'Fluency In English',
+    file: '/books/NCE4_Fluency_In_English.pdf',
+    image: '/images/book4.jpg',
+    tag: 'Advanced',
+    color: '#FFE6E6',
+    text: '#C62828'
+  }
+];

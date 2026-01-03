@@ -1,17 +1,55 @@
 'use client';
 
-import { ArrowRightIcon, AudioLinesIcon, BlocksIcon, BookOpenCheckIcon, ShapesIcon } from 'lucide-react';
+import { useEffect } from 'react';
+import { ArrowRightIcon, AudioLinesIcon, BlocksIcon, BookOpenCheckIcon, DownloadIcon, ShapesIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { courses } from '@/constants';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { books, courses } from '@/constants';
 import { convertToRomanBasic } from '@/lib/utils';
 
 export default function Home() {
   const router = useRouter();
+
+  const handlePdfDownload = (url: string) => {
+    // 1. 创建临时<a>标签（仅在内存中，不显示在页面上）
+    const tempLink = document.createElement('a');
+    // 2. 设置PDF路径和下载文件名
+    tempLink.href = url;
+    tempLink.download = url.slice(7); // 可选：自定义下载文件名
+    // 3. 触发点击（自动下载）
+    tempLink.click();
+    // 4. 移除临时标签（清理资源，可选，不影响功能）
+    URL.revokeObjectURL(tempLink.href);
+  };
+
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('PlaybackHistory');
+
+    if (hasVisited) {
+      setTimeout(() => {
+        toast.info('Welcome Back!', {
+          id: 'welcome-toast',
+          description: `You last studied Lesson ${decodeURIComponent(JSON.parse(hasVisited).lessonId).split('－')[0]} of Book ${JSON.parse(hasVisited).bookId.slice(-1)}. Do you want to continue?`,
+          className: 'rounded-xxs!',
+          duration: Infinity,
+          closeButton: true,
+          action: {
+            label: 'Continue !',
+            onClick: () => router.push(`/${JSON.parse(hasVisited).bookId}/${JSON.parse(hasVisited).lessonId}`)
+          },
+          onDismiss: () => {
+            localStorage.removeItem('PlaybackHistory');
+          }
+        });
+      }, 0);
+    }
+  }, [router]);
 
   return (
     <>
@@ -21,11 +59,11 @@ export default function Home() {
             Base on the New Concept English
           </Badge>
           <div className="absolute -top-30 -z-1 h-90 w-90 rounded-full border border-dashed border-current text-amber-500 before:absolute before:top-1/2 before:left-1/2 before:h-60 before:w-60 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:border-dashed before:border-current after:absolute after:top-1/2 after:left-1/2 after:h-120 after:w-120 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:border after:border-dashed after:border-current"></div>
-          <h1 className="mt-2 text-7xl font-semibold uppercase">
+          <h1 className="mt-2 text-6xl font-semibold uppercase">
             <span className="mb-2 font-bold text-amber-400"></span>
             up your <span className="mb-2 font-bold text-amber-400"> skills </span> <br />
-            to <span className="mb-2 font-bold text-amber-400"> advance</span> your <br />
-            <span className="mb-2 font-bold text-amber-400">career</span> path
+            to <span className="mb-2 font-bold text-amber-400"> promote</span> your <br />
+            <span className="mb-2 font-bold text-amber-400">career</span> development
           </h1>
           <div className="my-6 text-base text-gray-500">
             These courses can help you improve your skills and abilities to better handle your daily work.
@@ -33,14 +71,59 @@ export default function Home() {
             Believe in yourself and you will succeed
           </div>
           <section className="flex gap-x-5">
-            <Button onClick={() => {}}>
+            <Button
+              onClick={() => {
+                open('https://pan.quark.cn/s/05fa412deb28?pwd=ESLF', '_blank');
+              }}
+            >
               Let&apos;s Get Started
               <ArrowRightIcon size={16} />
             </Button>
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="secondary" className="bg-gray-800 text-white hover:bg-gray-600">
+                  Download Books
+                  <DownloadIcon size={16} />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="rounded-xxs w-82 p-2">
+                <div className="grid gap-2">
+                  <div className="space-y-2 px-2 pt-2 pb-0">
+                    <h4 className="text-sm leading-none font-medium">PDF Book Download</h4>
+                    <p className="text-muted-foreground text-xs">Please select the book you want to download.</p>
+                  </div>
+                  <div className="flex flex-col">
+                    {books.map((book, index) => (
+                      <div
+                        key={book.id}
+                        className="rounded-xxs flex cursor-pointer gap-x-3 p-2 hover:bg-amber-50"
+                        onClick={() => handlePdfDownload(book.file)}
+                      >
+                        <Image src={book.image} width={40} height={40} alt={book.title} className="rounded-xxs" />
+                        <div className="flex flex-col">
+                          <span className="text-sm font-medium text-gray-600">
+                            <b className="text-gray-700">Book {index + 1}</b> - {book.title}
+                          </span>
+                          <Badge
+                            className="py-0.2 mt-0.5 px-1 text-[10px]"
+                            style={{ backgroundColor: book.color, color: book.text }}
+                            variant="secondary"
+                          >
+                            {book.tag}
+                          </Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
             <Button
               variant="secondary"
               className="bg-gray-800 text-white hover:bg-gray-600"
-              onClick={() => router.push('https://github.com/konia/NCE')}
+              onClick={() => open('https://github.com/konia/nce', '_blank')}
             >
               GitHub
             </Button>

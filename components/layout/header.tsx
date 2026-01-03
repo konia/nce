@@ -1,12 +1,6 @@
 'use client';
 
-import { FileDownIcon, MailIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-
-import { Separator } from '@/components/ui/separator';
-
-import { Button } from '../ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 export const Header = () => {
   const router = useRouter();
@@ -24,7 +18,7 @@ export const Header = () => {
             <span className="text-amber-400">N.</span>Concept
           </h1>
         </section>
-        <section className="ml-auto flex items-center gap-2 **:data-[slot=separator]:h-4! md:flex-1 md:justify-end">
+        {/* <section className="ml-auto flex items-center gap-2 **:data-[slot=separator]:h-4! md:flex-1 md:justify-end">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button size="icon-sm" variant="ghost">
@@ -34,7 +28,6 @@ export const Header = () => {
             <TooltipContent side="bottom">Download E-book</TooltipContent>
           </Tooltip>
           <Separator orientation="vertical" />
-          {/* <ThemeToggle /> */}
 
           <Tooltip>
             <TooltipTrigger asChild>
@@ -44,9 +37,7 @@ export const Header = () => {
             </TooltipTrigger>
             <TooltipContent side="bottom">Message</TooltipContent>
           </Tooltip>
-
-          {/* <Button size="sm">Button</Button> */}
-        </section>
+        </section> */}
       </section>
     </header>
   );

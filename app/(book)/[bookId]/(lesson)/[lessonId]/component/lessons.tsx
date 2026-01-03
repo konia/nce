@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { PauseIcon, PlayIcon, RefreshCwIcon, RepeatIcon, SkipBackIcon, SkipForwardIcon } from 'lucide-react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -151,7 +152,11 @@ export default function LessonContent({
         syncDuration();
       }
     }
-  }, []);
+    toast.dismiss('welcome-toast');
+    setTimeout(() => {
+      localStorage.setItem('PlaybackHistory', JSON.stringify({ bookId, lessonId }));
+    }, 100);
+  }, [bookId, lessonId]);
 
   return (
     <section className="mb-[10vh] flex h-[50vh] overflow-hidden rounded-2xl bg-white">
