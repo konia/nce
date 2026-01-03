@@ -15,9 +15,18 @@ export const metadata: Metadata = {
   title: 'New Concept English',
   description: 'Up Your Skills to Advance Your Career Path',
   openGraph: {
-    title: 'New Concept English',
-    description: 'Up Your Skills to Advance Your Career Path',
+    title: 'Up Your Skills to Advance Your Career Path - N.Concept English',
+    description:
+      'A website for self-studying New Concept English, which allows users to repeatedly play course recordings, download ebooks and teaching videos, and other related materials.',
     url: 'https://nce-red.vercel.app/',
+    images: [
+      {
+        url: 'https://nce-red.vercel.app/og.jpg', // Must be an absolute URL
+        width: 1800,
+        height: 1600
+      }
+    ],
+
     siteName: 'New Concept English',
     locale: 'en_US',
     type: 'website'
