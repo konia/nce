@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
-import { NextRequest, NextResponse } from 'next/server'; // 推荐使用 NextResponse 来简化
 import path from 'path';
+
+import { NextRequest, NextResponse } from 'next/server'; // 推荐使用 NextResponse 来简化
 
 import { parseLrc } from '@/lib/utils';
 

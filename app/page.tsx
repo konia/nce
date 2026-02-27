@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import { ArrowRightIcon, AudioLinesIcon, BlocksIcon, BookOpenCheckIcon, DownloadIcon, ShapesIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
 
 import { Badge } from '@/components/ui/badge';
@@ -38,10 +38,10 @@ export default function Home() {
           description: `The recent studies was L${decodeURIComponent(JSON.parse(hasVisited).lessonId).split('－')[0]} of Book
               ${JSON.parse(hasVisited).bookId.slice(-1)}. Do you want to continue?`,
 
-          className: 'rounded-xxs! py-3!',
+          className: 'py-3!',
           classNames: {
             description: 'text-xs! text-gray-600!',
-            actionButton: 'rounded-xs! bg-gray-900!',
+            actionButton: 'bg-gray-900! rounded-sm!',
             closeButton: 'bg-white! text-gray-600!'
           },
           duration: Infinity,
@@ -78,22 +78,20 @@ export default function Home() {
             Believe in yourself and you will succeed
           </div>
           <section className="flex gap-x-5">
-            <Button
-              onClick={() => {
-                open('https://pan.quark.cn/s/05fa412deb28?pwd=ESLF', '_blank');
-              }}
-            >
+            <Button onClick={() => open('https://pan.quark.cn/s/05fa412deb28?pwd=ESLF', '_blank')}>
               Let&apos;s Get Started
               <ArrowRightIcon size={16} />
             </Button>
 
             <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="secondary" className="bg-gray-800 text-white hover:bg-gray-600">
-                  Download Books
-                  <DownloadIcon size={16} />
-                </Button>
-              </PopoverTrigger>
+              <PopoverTrigger
+                render={
+                  <Button variant="secondary" className="bg-gray-800 text-white hover:bg-gray-600">
+                    Download Books
+                    <DownloadIcon size={16} />
+                  </Button>
+                }
+              />
               <PopoverContent className="rounded-xxs w-82 p-2">
                 <div className="grid gap-2">
                   <div className="space-y-2 px-2 pt-2 pb-0">
@@ -121,7 +119,10 @@ export default function Home() {
                           </span>
                           <Badge
                             className="py-0.2 mt-0.5 px-1 text-[10px]"
-                            style={{ backgroundColor: book.color, color: book.text }}
+                            style={{
+                              backgroundColor: book.color,
+                              color: book.text
+                            }}
                             variant="secondary"
                           >
                             {book.tag}

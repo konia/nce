@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
-import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
+
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ bookId: string }> }) {
   const { bookId } = await params;

@@ -1,5 +1,4 @@
-// components/BackButton.jsx
-'use client'; // 必须标记为客户端组件
+'use client';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 

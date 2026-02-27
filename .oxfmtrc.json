@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "sortTailwindcss": {},
+  "tabWidth": 2,
+  "singleQuote": true,
+  "printWidth": 120,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "useTabs": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [],
+  "sortImports": {
+    "order": "asc",
+    "partitionByComment": true
+  }
+}

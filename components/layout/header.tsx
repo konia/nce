@@ -20,7 +20,7 @@ export const Header = () => {
         </section>
         {/* <section className="ml-auto flex items-center gap-2 **:data-[slot=separator]:h-4! md:flex-1 md:justify-end">
           <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger>
               <Button size="icon-sm" variant="ghost">
                 <FileDownIcon />
               </Button>
@@ -30,7 +30,7 @@ export const Header = () => {
           <Separator orientation="vertical" />
 
           <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger>
               <Button variant="ghost" size="icon-sm" className="relative overflow-hidden text-gray-700">
                 <MailIcon size={16} />
               </Button>

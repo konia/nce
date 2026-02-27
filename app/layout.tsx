@@ -5,6 +5,7 @@ import { Capriola } from 'next/font/google';
 import { Container } from '@/components/layout/container';
 import { Header } from '@/components/layout/header';
 import { Toaster } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 import './globals.css';
 
@@ -44,7 +45,9 @@ export default function RootLayout({
     <html lang="en" className="light" style={{ colorScheme: 'light' }}>
       <body className={`${capriola.variable} antialiased`} suppressHydrationWarning>
         <Header></Header>
-        <Container>{children}</Container>
+        <Container>
+          <TooltipProvider>{children}</TooltipProvider>
+        </Container>
         <Toaster position="top-right" richColors />
         {/* </ThemeProvider> */}
       </body>

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { PauseIcon, PlayIcon, RefreshCwIcon, RepeatIcon, SkipBackIcon, SkipForwardIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import BackButton from '@/components/layout/back-button';
@@ -36,6 +36,7 @@ export default function LessonContent({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState(1);
 
   // 同步音频总时长到歌词数据的最后一行
   const syncDuration = () => {
@@ -118,7 +119,7 @@ export default function LessonContent({
     }
   };
 
-  // 1. 切换播放/暂停
+  // 切换播放/暂停
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -146,7 +147,15 @@ export default function LessonContent({
     setCurrentTime(0);
   };
 
-  // 3. 关键：组件挂载后，主动检查一下音频状态
+  // --- 新增：倍速切换逻辑 ---
+  const handleSpeedChange = (rate: number) => {
+    setPlaybackRate(rate); // 更新 UI 状态高亮
+    if (audioRef.current) {
+      audioRef.current.playbackRate = rate; // 实际改变音频的播放速度
+    }
+  };
+
+  // 组件挂载后，主动检查一下音频状态
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -185,6 +194,13 @@ export default function LessonContent({
             onEnded={handleEnded}
           >
             <source src={`/audio/${bookId}/${lessonSlug}.mp3`} type="audio/mpeg" />
+            <track
+              kind="captions"
+              srcLang="en"
+              label="English captions"
+              src={`/audio/${bookId}/${lessonSlug}.vtt`}
+              default
+            />
           </audio>
         )}
 
@@ -194,7 +210,9 @@ export default function LessonContent({
             max={duration}
             step={1}
             value={[currentTime]}
-            onValueChange={(value: number[]) => handleSeek(value[0])}
+            className="mx-auto w-full"
+            onValueChange={(value) => handleSeek((value as number[])[0])}
+            orientation="horizontal"
           />
           <div className="mt-2 flex w-75 items-center justify-between text-xs text-gray-400">
             <span>{formatTime(currentTime)}</span>
@@ -204,17 +222,34 @@ export default function LessonContent({
 
         <section className="flex w-75 items-center justify-between">
           <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                size="icon-sm"
-                variant="ghost"
-                className={`text-gray-400 ${playMode === 'sequence' ? 'text-accent-foreground' : ''}`}
-                onClick={() => setPlayMode('sequence')}
-              >
-                <RepeatIcon />
-              </Button>
-            </TooltipTrigger>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  className={`text-gray-400 ${playMode === 'sequence' ? 'text-accent-foreground' : ''}`}
+                  onClick={() => setPlayMode('sequence')}
+                >
+                  <RepeatIcon />
+                </Button>
+              }
+            />
             <TooltipContent side="bottom">Sequence</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  className={`text-gray-400 ${playMode === 'loop' ? 'text-accent-foreground' : ''} `}
+                  onClick={() => setPlayMode('loop')}
+                >
+                  <RefreshCwIcon />
+                </Button>
+              }
+            />
+            <TooltipContent side="bottom">Loop</TooltipContent>
           </Tooltip>
 
           <section className="flex items-center gap-x-2">
@@ -254,18 +289,36 @@ export default function LessonContent({
               <SkipForwardIcon />
             </Button>
           </section>
+
           <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                size="icon-sm"
-                variant="ghost"
-                className={`text-gray-400 ${playMode === 'loop' ? 'text-accent-foreground' : ''} `}
-                onClick={() => setPlayMode('loop')}
-              >
-                <RefreshCwIcon />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">Loop</TooltipContent>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  className={`text-gray-400 ${playbackRate === 1 ? 'text-accent-foreground' : ''} `}
+                  onClick={() => handleSpeedChange(1)}
+                >
+                  1x
+                </Button>
+              }
+            />
+            <TooltipContent side="bottom">1x speed</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  className={`text-gray-400 ${playbackRate === 2 ? 'text-accent-foreground' : ''} `}
+                  onClick={() => handleSpeedChange(2)}
+                >
+                  2x
+                </Button>
+              }
+            />
+            <TooltipContent side="bottom">2x speed</TooltipContent>
           </Tooltip>
         </section>
       </section>
